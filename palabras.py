@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
+mesArabArab = {1:"mu.harram",
+               2:".safar",
+               3:"rabI` \\LR{\\bf 1}",
+               4:"rabI` \\LR{\\bf 2}",
+               5:"^gumAdY \\LR{\\bf 1}",
+               6:"^gumAdY \\LR{\\bf 2}",
+               7:"ra^gab",
+               8:"^sa`bAn",
+               9:"rama.dAn",
+               10:"^suwAl",
+               11:"_dU al-qi`adaT",
+               23:"_dI al-qi`adaT",
+               12:"_dU al-.hi^g^gaT",
+               24:"_dI al-.hi^g^gaT"}
+               
+
+mesArabTrans = {1:"\\RL{mu.harram} \\rm",
+                2:"\\RL{.safar} \\rm",
+                3:"\\RL{rabI`} \\textbf{1} \\rm",
+                4:"\\RL{rabI`} \\textbf{2} \\rm",
+                5:"\\RL{^gumAdY} \\textbf{1} \\rm",
+                6:"\\RL{^gumAdY} \\textbf{2} \\rm",
+                7:"\\RL{ra^gab} \\rm", 
+                8:"\\RL{^sa`bAn} \\rm",
+                9:"\\RL{rama.dAn} \\rm",
+                10:"\\RL{^suwAl} \\rm",
+                11:"\\RL{_dU al-qi`adaT} \\rm",
+                12:"\\RL{_dU al-.hi^g^gaT} \\rm"}
+
+mesArabCaja = {1:"\\RL{mu.harram} \\rm",
+               2:"\\RL{.safar} \\rm",
+               3:"\\RL{rabI`} 1 \\rm",
+               4:"\\RL{rabI`} 2 \\rm",
+               5:"\\RL{^gumAdY} 1 \\rm",
+               6:"\\RL{^gumAdY} 2 \\rm",
+               7:"\\RL{ra^gab} \\rm", 
+               8:"\\RL{^sa`bAn} \\rm",
+               9:"\\RL{rama.dAn} \\rm",
+               10:"\\RL{^suwAl} \\rm",
+               11:"\\RL{_dU al-qi`adaT} \\rm",
+               12:"\\RL{_dU al-.hi^g^gaT} \\rm"}
+
+mesSolarEsp = {1:"ene.",
+               2:"feb.",
+               3:"mar.",
+               4:"abr.",
+               5:"may.",
+               6:"jun.",
+               7:"jul.",
+               8:"ago.",
+               9:"sep.",
+               10:"oct.",
+               11:"nov.",
+               12:"dic."}
+
+mesSolarEng = {1:".jan",
+               2:".feb",
+               3:".mar",
+               4:".apr",
+               5:".may",
+               6:".jun",
+               7:".jul",
+               8:".aug",
+               9:".sep",
+               10:".oct",
+               11:".nov",
+               12:".dec"}
+
+mesSolarArab = {1:"yannAyr",
+                2:"fibrAyr",
+                3:"mAris",
+                4:"'abrIl",
+                5:"mAyuh",
+                6:"yUniyuh",
+                7:"yUliyuh",
+                8:".gu^st",
+                9:"^sutanbar",
+                10:"'uktUbar",
+                11:"nuwanbar",
+                12:"du^ganbar"}

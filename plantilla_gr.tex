@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+
+% aprovechamiento de la p\'agina -- fill an A4 (210mm x 297mm) page
+
+% Note: 1 inch = 25.4 mm = 72.27 pt
+% 1 pt = 3.5 mm (approx)
+
+% vertical page layout -- one inch margin top and bottom
+
+\topmargin     -14 mm  % top margin less 1 inch
+\headheight     0 mm  % height of box containing the head
+\headsep        0 mm  % space between the head and the body of the page
+\textheight   276 mm
+\footskip       7 mm  % distance from bottom of body to bott om of foot
+
+% horizontal page layout -- one inch margin each side
+\oddsidemargin    0 mm   % inner margin less one inch on odd pages
+\evensidemargin   0 mm   % inner margin less one inch on even pages
+\textwidth      159.2 mm % normal width of text on page
+
+\usepackage{arabtex}
+\usepackage{atrans}
+\usepackage{nashbf}
+\usepackage{twoblks}
+\usepackage[utf8]{inputenc}
+\usepackage[absolute]{textpos}
+\usepackage{graphicx}
+
+\usepackage{tikz,everypage}
+\usetikzlibrary{backgrounds}
+\newcommand*{\AbsolutePosition}[3]{%
+    % #1 = x (from south west corner of page)
+    % #2 = y
+    % #3 = content
+    \AddThispageHook{%
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw (current page.south west) ++ (#1,#2) node[opacity=0.7] {#3};%
+        \end{tikzpicture}
+    }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% cómo generar el código QR
+%% compilar con:  pdflatex -shell-escape <file>
+%% la primera vez para generar el pdf y luego 
+%% comentar.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{pst-barcode}
+% \usepackage{auto-pst-pdf}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% selección de la fuente global
+\usepackage[
+            light,
+            math]
+           {kurier}
+\usepackage[T1]{fontenc}
+
+\newenvironment{parrafo}{\begin{trivlist}\item []}{\end{trivlist}}
+\pagestyle{empty}
+\tracingarab=0
+\setarab
+\settrans{spanish}
+\novocalize
+\arabtrue
+
+\pagestyle{empty}
+
+\begin{document}
+
+% %\begin{textblock*}{290mm}(185mm,258mm)
+% \begin{textblock*}{290mm}(25mm,2mm) % Granada y Motril
+% %\begin{textblock*}{290mm}(25mm,4mm) % Sevilla
+%   \includegraphics[scale=1]{taqwim.pdf}
+% \end{textblock*}
+
+\footnotesize \twoblocks{Parte de los momentos del
+  \arabfalse\transtrue \RL{.salAT} correspondiente al mes de
+  \arabfalse\transtrue\settransfont{\bf\itshape} 
+  mesArabTrans 
+  del a\~no \textbf{agnoa h.} (agnom/agnop d.J.) para la
+  ciudad de \textbf{Granada} y cercan\'{\i}as.  }{
+  \begin{arabtext}
+    \noindent
+    .hi.s.saTu 'awqAti a.s-.salATi li^sahri \setnashbf 
+    mAAG
+    \setnash min `Ami \setnashbf <\bf agnoa> h- . \setnash(
+    \LR{agnom}/\LR{agnop} m- .) limadInaTi \setnashbf .garnA.taTa
+    \setnash wa-mA ^gAwarahA.
+  \end{arabtext}}
+
+\normalsize
+
+\begin{parrafo}
+\centerline{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\RL{al-`i^sA'}&
+\RL{al-ma.grib}&
+\RL{al-`a.sr}&\RL{a.z-.zuhr}&
+\RL{al-^surUq}&\RL{al-fa^gr}&
+\multicolumn{2}{|c|}{\RL{yawmu al-'usbU`}}&
+\RL{mesSolarArab2} /\RL{mesSolarArab1}&
+\RL{mesArabArab}\\
+\hline
+\arabfalse\transtrue \RL{`i^sA'} &
+\arabfalse\transtrue \RL{ma.grib}&
+\arabfalse\transtrue \RL{`a.sr}  &
+\arabfalse\transtrue \RL{.zuhr}  &
+\arabfalse\transtrue \RL{^surUq} &
+\arabfalse\transtrue \RL{fa^gr}  &
+                      \multicolumn{2}{|c|}{d\'{\i}a semana}&
+                      mesSolarEsp1/mesSolarEsp2  &
+\settransfont{\bf\itshape}\arabfalse\transtrue
+mesArabCaja\\
+\hline
+horario
+\end{tabular}
+}
+
+% Lugares de interés
+                                         
+% Güera
+% s-m 1h 21m 22s
+% m-a 1d 07h 57m
+% Cape Town
+% s-m 1h 00m 15s
+% m-a 1d 05h 08m
+
+% informe mes anterior:
+                                        
+\centerline{                             
+\begin{tabular}{|c|c|c|c|c|c|}           
+  \hline                                   
+  \multicolumn{6}{|c|}{Algunos par\'ametros lunares en \textbf{Granada} para
+    final de \arabfalse\transtrue\settransfont{\bf\itshape} 
+  mesArabTrans}\\
+  \hline
+  d\'{\i}a de observar&
+  puesta de Sol&
+  puesta de Luna&
+  dif. Luna-Sol&
+  edad lunar&
+  ?`avistamiento?\\
+  \hline
+  diadata&
+  ssdata&
+  msdata&
+  smdata&
+  madata&
+  avdata\\ 
+  \hline
+\end{tabular}
+}
+ \vspace{2mm}
+
+ \footnotesize \noindent \textbf{Granada} (37º11'N/3º36'O): longitud
+ de referencia 15ºE, zona horaria +1 h, altitud sobre el nivel del mar
+ 828 m, \'angulo de crep\'usculo 18º, \arabfalse\transtrue \RL{qiblaT}
+ 100.4º, declinaci\'on dedata.
+
+\end{parrafo}
+
+ % \scriptsize
+ % \begin{parrafo}
+ % \centerline{\textsc{Carnicer\'{\i}a Albaic\'{\i}n-Halal},
+ % \textit{Calderer\'{\i}a Vieja, 16 -- 18010
+ % Granada -- Tel. 958 227 074}}
+ % \end{parrafo}
+
+ % \scriptsize
+ % \begin{parrafo}
+ % \centerline{\textsc{Carnicer\'{\i}a Tangerino
+ % "Halal". Pasteler\'{\i}a \'{A}rabe},
+ % \textit{Avd. Pulianas, 42 -- 18011
+ % Granada -- Tel. 663 489 100}}
+ % \end{parrafo}
+
+ % \scriptsize
+ % \begin{parrafo}
+ % \centerline{\textsc{Carnicer\'{\i}a Elvira-Halal},
+ % \textit{Elvira, 121 -- 18010
+ % Granada -- Tel. 958 201 958}}
+ % \end{parrafo}
+
+ \scriptsize
+ \begin{parrafo}
+ \centerline{\textsc{Sabores de Al-Andalus (Natura Morisca)},
+ \textit{Acera del Darro, 2 (Pasaje Regina) -- 18005
+ Granada -- Tel. 627 878 242}}
+ \end{parrafo}
+
+%  \begin{parrafo}
+%  \centerline{\texttt{Segunda Edición}}
+%  \end{parrafo}
+\end{document}
+ 
