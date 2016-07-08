@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
-cajaGr = {"diadata":"03/08/2016",
+cajaGr = {"diadata":"05/07/2016",
           "ssdata":"21h 43m 02s",
           "msdata":"22h 27m 43s",
           "smdata":"00h 44m 41s",
@@ -13,7 +13,7 @@ cajaGr = {"diadata":"03/08/2016",
           "agnop":"2016"
           }
 
-cajaMt = {"diadata":"03/08/2016",
+cajaMt = {"diadata":"05/07/2016",
           "ssdata":"21h 36m 16s",
           "msdata":"22h 21m 34s",
           "smdata":"00h 45m 17s",
@@ -25,7 +25,7 @@ cajaMt = {"diadata":"03/08/2016",
           "agnop":"2016"
           }
 
-cajaSv = {"diadata":"03/08/2016",
+cajaSv = {"diadata":"05/07/2016",
           "ssdata":"21h 50m 14s",
           "msdata":"22h 35m 10s",
           "smdata":"00h 44m 56s",
@@ -37,7 +37,7 @@ cajaSv = {"diadata":"03/08/2016",
           "agnop":"2016"
           }
 
-cajaOtros ={"diadata":"03/08/2016",
+cajaOtros ={"diadata":"05/07/2016",
             "smguera":"00h 57m 50s",
             "maguera":"01d 08h 48m",
             "smciudadcabo":"01h 19m 48s",
