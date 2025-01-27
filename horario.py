@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 
 from observacion import *
 from palabras import *
@@ -12,7 +11,8 @@ class Dia(object):
     Fecha: 21/03/2016
     Hora: 17:29 h.
     """
-    _agnadidura = 5
+    _agnadidura = 1
+    _agnadiduraDuhur = 5
     
     _diasEntoSp ={'Mon':'lun',
                 'Tue':'mar',
@@ -52,9 +52,12 @@ class Dia(object):
         signo = lambda x: x and (1,-1)[x<0]
         return self._suma2Hitos(hito,(0,signo(n)*self._agnadidura))
 
+    def _normalizacionDuhur(self,hito):
+        return self._suma2Hitos(hito,(0,self._agnadiduraDuhur))
+    
     def __init__(self,dm,est,sem,f,s,z,a,m,i):
         s1 = self._normalizacion(s,-1)
-        z1 = self._normalizacion(z,1)
+        z1 = self._normalizacionDuhur(z)
         m1 = self._normalizacion(m,1)
         self.diaMesSolar = dm
         self.estacion    = est
@@ -77,32 +80,38 @@ class Dia(object):
                                                             self.estacion,
                                                             self.diaMesSolar)
 
-def capturaLineas(mes1,mes2,diaComienzo):
-    """
-    capturaLineas toma 30 líneas, cada una de ellas
-    correspondiendo a días de los meses
-    solares, a partir del día diaComienzo del mes1 hasta
-    completar de mes2. Si puede tomar los 30 días sólo de
-    mes1, no recurre entonces a mes2.
-    El sentido de la variable booleana de la salida es dar
-    respuesta a la pregunta ¿ha sido involucrado un segundo
-    mes en la extración del horario? Obviamente "False"
-    significa respuesta "NO".
-    """
-    dc = int(diaComienzo)    
-    margenSup, margenInf, lista2 = 9+dc, 12, []     # corresponde a 10 + (dc -1)
-    with open(mes1,"r") as f1:
-        lista1 = f1.readlines()
-        if '*' in lista1[-6]:
-            margenInf +=1 
-        lista1 = lista1[margenSup:-margenInf]
-        actual = 30-len(lista1)
-        if actual > 0:
-            with open(mes2,"r") as f2:
-                lista2 = f2.readlines()[10:10+actual]
-        elif actual < 0:
-            lista1 = lista1[0:30]
-    return lista1+lista2, bool(lista2)
+def limpiaMes(mes):
+    margenSup, margenInf = 10, 12
+    with open(mes,'r') as m:
+        lst = m.readlines()
+        if '*' in lst[-6]:
+            margenInf += 1
+        lst = lst[margenSup:-margenInf]
+    return lst
+
+def capturaLineas(diaComienzo,mes0,mes1=None,mes2=None):
+    dc, tomar, usado = int(diaComienzo)-1, 30, 0 
+                   # para dc los días comienzan en 1 y la lista es indexada desde 0 
+    lst = limpiaMes(mes0)[dc:]
+    usado +=1
+    tomar = 30 - len(lst)
+    if tomar < 0:
+        lst = lst[0:30]
+    elif tomar > 0:
+        mst = limpiaMes(mes1)
+        lst += mst 
+        tomar = 30 - len(lst)
+        usado += 1
+        if tomar < 0:
+            lst = lst[0:30]
+        elif tomar > 0:
+            mst = limpiaMes(mes2)
+            lst += mst
+            tomar = 30 - len(lst)
+            usado +=1
+            if tomar < 0:
+                lst = lst [0:30]
+    return lst, usado
 
 def extractDataLine(fila):
     """
@@ -121,7 +130,7 @@ def extractDataLine(fila):
                 # si el preferido fuese el segundo, del(a[6])
     return a
 
-def fromTxtToDia(mes1,mes2,diaComienzo):
+def fromTxtToDia(diaComienzo, mes0,mes1=None,mes2=None):
     """
     fromTxtToDia extrae de los meses en txt, a partir del día
     diaComienzo del primero, 30 líneas correspondientes cada
@@ -133,8 +142,8 @@ def fromTxtToDia(mes1,mes2,diaComienzo):
     mes en la extración del horario? Obviamente "False"
     significa respuesta "NO".
     """
-    cl,sm = capturaLineas(mes1,mes2,diaComienzo)
-    x = list(map(extractDataLine,cl))
+    cl,sm = capturaLineas(diaComienzo,mes0,mes1,mes2)
+    x = list(map(extractDataLine,cl)) # a ver si podemos prescindir de list aquí
     return [Dia(*i) for i in x], sm
 
 def DiaToTxt(dia,diaMesLunar):
@@ -188,36 +197,32 @@ def mesTxtToLaTeX(ciudad,mes,diaComienzo):
         mesTxtToLaTeX crea 30 líneas LaTeX, una con
         cada día, tomadas del diaComienzo del mes mes1 en
         adelante completando, si es necesario, con las
-        primeras líneas del mes2. Esta función no tiene
-        return, pues su función es meramente la creación
-        de un fichero.
+        primeras líneas del mes2 y mes3 en su caso. Esta
+        función no tiene return, pues su función es meramente
+        la creación de un fichero.
         "ciudad" es una de: "gr" o "mt" o "sv"
         "mes" es un número de 1 a 12, representa el mes
               solar en el que tiene comienzo el mes lunar
               en elaboración
         "diaComienzo" es el día del "mes" en que comienza
               el mes lunar
-    El sentido de la variable booleana "b" de la salida es dar
-    respuesta a la pregunta ¿ha sido involucrado un segundo
-    mes en la extración del horario? Obviamente "False"
-    significa respuesta "NO".
-              
+    El sentido de la variable entera "b" de la salida es
+    contar el número de meses usados para construir la tabla.
     """
-    m1, m2 = mes, mes%12+1
+    m0, m1 = mes, mes%12 + 1
+    m2 = m1%12 + 1
     horario = horarios[ciudad]
-    mes1, mes2 = city[ciudad]+mesSolarEng[m1], city[ciudad]+mesSolarEng[m2]
-    d,b = fromTxtToDia(mes1,mes2,diaComienzo)
+    mes0, mes1 = city[ciudad]+mesSolarEng[m0], city[ciudad]+mesSolarEng[m1]
+    mes2 = city[ciudad]+mesSolarEng[m2]
+    d,b = fromTxtToDia(diaComienzo,mes0,mes1,mes2)
     lst = [DiaToTxt(d[i-1],i) for i in range(1,30)]
     lst.append(DiaToTxtW(d[29],30))
     with open(horario, "w") as f:
             for i in range(30):
                 f.write(lst[i])
-            f.close
     return b
 
 """
-z = mesTxtToLaTeX("gr",3,11)
+z = mesTxtToLaTeX("gr",1,31)
 print(z)
-mesTxtToLaTeX("mt",3,11)
-mesTxtToLaTeX("sv",3,11)
 """

@@ -7,7 +7,7 @@
 
 \usepackage[paperheight=297mm,
             paperwidth=210mm,
-            tmargin=18mm, 
+            tmargin=13mm, 
             headheight=0mm, 
             headsep=0mm,
             textheight=276mm,
@@ -55,7 +55,7 @@
     % #3 = content
     \AddThispageHook{%
         \begin{tikzpicture}[remember picture,overlay]
-            \draw (current page.south west) ++ (#1,#2) node[opacity=0.45] {#3};%
+            \draw (current page.south west) ++ (#1,#2) node[opacity=0.25] {#3};%
         \end{tikzpicture}
     }
 }
@@ -81,6 +81,7 @@
 
 \begin{document}
 
+\pagestyle{empty}
 \tracingarab=0
 \setarab
 \settrans{spanish}
@@ -93,29 +94,34 @@
 %   \includegraphics[scale=1]{taqwim.pdf}
 % \end{textblock*}
 
+\begin{center}
+\href{http://bcnmosque.com/}{\Huge\textsc{Fundación Mezquita de Barcelona}}
+\end{center}
+\AbsolutePosition{105mm}{150mm}{\includegraphics[scale=0.38]{mim.jpg}}
+
 \footnotesize \twoblocks{Parte de los momentos del
   \arabfalse\transtrue \RL{.salAT} correspondiente al mes de
   \arabfalse\transtrue\settransfont{\bf\itshape} 
   mesArabTrans 
   del a\~no \textbf{agnoa h.} (agnom/agnop d.J.) para la
-  ciudad de \textbf{Granada} y cercan\'{\i}as.  }{
+  ciudad de \textbf{Barcelona} y cercan\'{\i}as.  }{
   \begin{arabtext}
     \noindent
     .hi.s.saTu 'awqAti a.s-.salATi li^sahri \setnashbf 
     mAAG
     \setnash min `Ami \setnashbf <\bf agnoa> h- . \setnash(
-    \LR{agnom}/\LR{agnop} m- .) limadInaTi \setnashbf .garnA.taTa
+    \LR{agnom}/\LR{agnop} m- .) limadInaTi \setnashbf bar^silUnaT
     \setnash wa-mA ^gAwarahA.
   \end{arabtext}}
 \vspace{2mm}
-\normalsize
+  \normalsize
 \centerline{
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
 \RL{al-`i^sA'}&
 \RL{al-ma.grib}&
 \RL{al-`a.sr}&\RL{a.z-.zuhr}&
-\RL{a^s-^surUq}&\RL{al-fa^gr}&
+\RL{al-^surUq}&\RL{al-fa^gr}&
 \multicolumn{2}{|c|}{\RL{yawmu al-'usbU`}}&
 \RL{mesSolarArab2} /\RL{mesSolarArab1}&
 \RL{mesArabArab}\\
@@ -135,10 +141,10 @@ horario
 \end{tabular}
 }
                                         
-\centerline{
+\centerline{                             
 \begin{tabular}{|c|c|c|c|c|c|}           
   \hline                                   
-  \multicolumn{6}{|c|}{Algunos par\'ametros lunares en \textbf{Granada} para
+  \multicolumn{6}{|c|}{Algunos par\'ametros lunares en \textbf{Barcelona} para
     final de \arabfalse\transtrue\settransfont{\bf\itshape} 
   mesArabTrans}\\
   \hline
@@ -158,43 +164,22 @@ horario
   \hline
 \end{tabular}
 }
-\vspace{2mm}
+ \vspace{2mm}
 
- \footnotesize \noindent \textbf{Granada} (37º11'N/3º36'O): longitud
+ \footnotesize \noindent \textbf{Barcelona} (41º23'N/2º09'E): longitud
  de referencia 15ºE, zona horaria +1 h, altitud sobre el nivel del mar
- 828 m, \'angulo de crep\'usculo 18º, \arabfalse\transtrue \RL{qiblaT}
- 100.4º, declinaci\'on dedata.
+ 25 m, \'angulo de crep\'usculo 18º, \arabfalse\transtrue \RL{qiblaT}
+ 110.50º, declinaci\'on dedata.
 
- % \scriptsize
- % \begin{center}
- % \textsc{Carnicer\'{\i}a Albaic\'{\i}n-Halal},
- % \textit{Calderer\'{\i}a Vieja, 16 -- 18010
- % Granada -- Tel. 958 227 074}
- % \end{center}
-
- % \scriptsize
- % \begin{center}
- % \textsc{Carnicer\'{\i}a Tangerino
- % "Halal". Pasteler\'{\i}a \'{A}rabe},
- % \textit{Avd. Pulianas, 42 -- 18011
- % Granada -- Tel. 663 489 100}
- % \end{center}
-
- % \scriptsize
- % \begin{center}
- % \textsc{Carnicer\'{\i}a Elvira-Halal},
- % \textit{Elvira, 121 -- 18010
- % Granada -- Tel. 958 201 958}
- % \end{center}
-
- \scriptsize
  \begin{center}
-   \textsc{Reposter\'{\i}a Morisca},
-   \textit{Calderer\'{\i}a Vieja, 12 -- 18010
-     Granada -- Tel. 657 528 884/3}
+   \footnotesize
+   Carrer Benet Mercadé 26 Local 1, 08012 Barcelona --- 
+   Tel: +34 935 312 292\\ % --- Fax: +34 932 491 415\\
+   \href{mailto:info@bcnmosque.com}{\texttt{info{@}bcnmosque.com}} ---
+   \href{https://is.gd/1YNfan}{\texttt{www.bcnmosque.com}}
  \end{center}
 
+%  
 %  \centerline{\texttt{Segunda Edición}}
-
+%  
 \end{document}
- 

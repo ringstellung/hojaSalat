@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 
 mesArabArab = {1:"mu.harram",
                2:".safar",

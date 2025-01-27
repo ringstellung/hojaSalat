@@ -5,18 +5,24 @@
 % Note: 1 inch = 25.4 mm = 72.27 pt
 % 1 pt = 3.5 mm (approx)
 
-% vertical page layout -- one inch margin top and bottom
+\usepackage[paperheight=297mm,
+            paperwidth=210mm,
+            tmargin=18mm, 
+            headheight=0mm, 
+            headsep=0mm,
+            textheight=276mm,
+            footskip=7mm,
+            textwidth=159.2mm,
+            bindingoffset=10mm,
+            twoside
+            ]{geometry}
 
-\topmargin     -14 mm  % top margin less 1 inch
-\headheight     0 mm  % height of box containing the head
-\headsep        0 mm  % space between the head and the body of the page
-\textheight   276 mm
-\footskip       7 mm  % distance from bottom of body to bott om of foot
-
-% horizontal page layout -- one inch margin each side
-\oddsidemargin    0 mm   % inner margin less one inch on odd pages
-\evensidemargin   0 mm   % inner margin less one inch on even pages
-\textwidth      159.2 mm % normal width of text on page
+% paragraph setup
+\setlength{\parindent}{0em}
+%\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\setlength{\columnsep}{1em}
+%\renewcommand{\baselinestretch}{1.5}
 
 \usepackage{arabtex}
 \usepackage{atrans}
@@ -25,6 +31,21 @@
 \usepackage[utf8]{inputenc}
 \usepackage[absolute]{textpos}
 \usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{fontawesome}
+
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred,
+            urlcolor=NavyBlue,
+            citecolor=cyan]{hyperref}
 
 \usepackage{tikz,everypage}
 \usetikzlibrary{backgrounds}
@@ -34,7 +55,7 @@
     % #3 = content
     \AddThispageHook{%
         \begin{tikzpicture}[remember picture,overlay]
-            \draw (current page.south west) ++ (#1,#2) node[opacity=0.7] {#3};%
+            \draw (current page.south west) ++ (#1,#2) node[opacity=0.45] {#3};%
         \end{tikzpicture}
     }
 }
@@ -56,17 +77,16 @@
            {kurier}
 \usepackage[T1]{fontenc}
 
-\newenvironment{parrafo}{\begin{trivlist}\item []}{\end{trivlist}}
+\pagestyle{empty}
+
+\begin{document}
+
 \pagestyle{empty}
 \tracingarab=0
 \setarab
 \settrans{spanish}
 \novocalize
 \arabtrue
-
-\pagestyle{empty}
-
-\begin{document}
 
 % %\begin{textblock*}{290mm}(185mm,258mm)
 % \begin{textblock*}{290mm}(25mm,2mm) % Granada y Motril
@@ -88,17 +108,15 @@
     \LR{agnom}/\LR{agnop} m- .) limadInaTi \setnashbf mU.tIrIl
     \setnash wa-mA ^gAwarahA.
   \end{arabtext}}
-
+\vspace{2mm}
 \normalsize
-
-\begin{parrafo}
 \centerline{
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
 \RL{al-`i^sA'}&
 \RL{al-ma.grib}&
 \RL{al-`a.sr}&\RL{a.z-.zuhr}&
-\RL{al-^surUq}&\RL{al-fa^gr}&
+\RL{a^s-^surUq}&\RL{al-fa^gr}&
 \multicolumn{2}{|c|}{\RL{yawmu al-'usbU`}}&
 \RL{mesSolarArab2} /\RL{mesSolarArab1}&
 \RL{mesArabArab}\\
@@ -117,17 +135,6 @@ mesArabCaja\\
 horario
 \end{tabular}
 }
-
-% Lugares de interés
-                                         
-% Güera
-% s-m 1h 21m 22s
-% m-a 1d 07h 57m
-% Cape Town
-% s-m 1h 00m 15s
-% m-a 1d 05h 08m
-
-% informe mes anterior:
                                         
 \centerline{                             
 \begin{tabular}{|c|c|c|c|c|c|}           
@@ -152,37 +159,34 @@ horario
   \hline
 \end{tabular}
 }
- \vspace{2mm}
+\vspace{2mm}
 
  \footnotesize \noindent \textbf{Motril} (36º45'N/3º31'O): longitud
  de referencia 15ºE, zona horaria +1 h, altitud sobre el nivel del mar
- 828 m, \'angulo de crep\'usculo 18º, \arabfalse\transtrue \RL{qiblaT}
- 100.4º, declinaci\'on dedata.
-\end{parrafo}
+ 250 m, \'angulo de crep\'usculo 18º, \arabfalse\transtrue \RL{qiblaT}
+ 100.0º, declinaci\'on dedata.
 
  % \scriptsize
- % \begin{parrafo}
- % \centerline{\textsc{Carnicer\'{\i}a Albaic\'{\i}n-Halal},
+ % \begin{center}
+ % \textsc{Carnicer\'{\i}a Albaic\'{\i}n-Halal},
  % \textit{Calderer\'{\i}a Vieja, 16 -- 18010
- % Granada -- Tel. 958 227 074}}
- % \end{parrafo}
+ % Granada -- Tel. 958 227 074}
+ % \end{center}
 
  % \scriptsize
- % \begin{parrafo}
- % \centerline{\textsc{Carnicer\'{\i}a Elvira-Halal},
+ % \begin{center}
+ % \textsc{Carnicer\'{\i}a Elvira-Halal},
  % \textit{Elvira, 121 -- 18010
- % Granada -- Tel. 958 201 958}}
- % \end{parrafo}
+ % Granada -- Tel. 958 201 958}
+ % \end{center}
 
- \scriptsize
- \begin{parrafo}
- \centerline{\textsc{Reposter\'{\i}a Morisca},
- \textit{Calderer\'{\i}a Vieja, 12 -- 18010
- Granada -- Tel. 657 528 884/3}}
- \end{parrafo}
-
-%  \begin{parrafo}
+ % \scriptsize
+ % \begin{center}
+ %   \textsc{Reposter\'{\i}a Morisca},
+ %   \textit{Calderer\'{\i}a Vieja, 12 -- 18010
+ %     Granada -- Tel. 657 528 884/3}
+ % \end{center}
+ 
 %  \centerline{\texttt{Segunda Edición}}
-%  \end{parrafo}
 \end{document}
  

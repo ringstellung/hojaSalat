@@ -1,61 +1,127 @@
-# ¿Cómo hacer una hoja para el salat mensual?
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 
-* Descubrir cuál es el día 29. Hemos de ejecutar según el ejemplo
-siguiente: 
+# Hoja de la Oración
 
-		python3 dia29.py 7 30
+## Cálculo del día 29 del mes lunar
+
+¿Cómo calcular en que día del mes solar cae el día 29 del mes lunar,
+conocido el día de comienzo y el mes?
+
+	 python dia29.py diaComienzo duracionMes
+
+donde `diaComienzo` es el día de comienzo del mes lunar y `duracionMes` es
+la duración del mes solar en el que comienza el mes lunar.
+
+Ejemplo 01:
+
+	python dia29.py 3 31
+
+indicando que el mes lunar comienza el día 3 de un mes solar de 31
+días. La respuesta será 31.
+
+Ejemplo 02:
+
+Descubrir cuál es el día 29. Hemos de ejecutar según el ejemplo siguiente:
+
+		python dia29.py 7 30
 
 indicando que el mes lunar comienza el día 7 de un mes solar de 30
 días; la respuesta será 5 en este ejemplo.
 
-Para ese día 29 que se haya obtenido hacer lo que indican los siguientes
-pasos.
+## Elaboración de una Hoja
 
-* Ir al fichero `observacion.py` y cambiar los datos oportunos en
+Para el día 29 que se haya obtenido según lo dicho, hacer lo que
+indican los siguientes pasos:
+
+1. Ir al fichero `observacion.py` y cambiar los datos oportunos en
  `observacion.py` sobre la observación del día día 29 y el pronóstico
  de avistamiento
 
-* Ejecutar la siguiente orden en este directorio
+2. Ejecutar la siguiente orden en este directorio:
 
-		python3 hoja.py ciudad mesArabe mesSolar dia
+        python hoja.py ciudad mesArabe mesSolar dia
 
    donde:
-	* ciudad debe tener uno de los siguientes valores: "gr" o
-	   "mt" o "sv"
-	* mesArabe es una cifra del 1 al 12 que representa el mes
-	   que queremos confeccionar. ramadan sería 9
-	* mesSolar es una cifra del 1 al 12 que representa el mes
-	   en que comienza el mesArabe
-	* dia es el día del mes solar que coincide con el 1 del mes
-	   árabe que vamos a confeccionar
-	* la salida es ciudad.tex, o sea, gr.tex o mt.tex o sv.tex
+	
+	* `ciudad` debe tener uno de los siguientes valores: `gr` o bien `mt`
+	   o bien `sv`
 
-Ejemplo:
+	* `mesArabe` es una cifra del 1 al 12 que representa el mes que
+	   queremos confeccionar (ramadän sería 9).
 
-	python3 hoja.py "gr" 6 3 11
+	* `mesSolar` es una cifra del 1 al 12 que representa el mes en que
+	   comienza el `mesArabe`
+	
+	* `dia` es el día del mes solar que coincide con el 1 del mes árabe
+	  que vamos a elaborar
+	
+	* la salida es `ciudad.tex`, o sea: `gr.tex` o bien `mt.tex` o bien
+      `sv.tex`.
 
-esto generará la hoja "gr.tex" que coincidirá con la que ya tenemos
-bajo el nombre "gr_06_1437.tex"
+Ejemplo 01:
 
-Otro ejemplo:
+	python hoja.py gr 6 3 11
 
-           python3 hoja.py sv 9 6 7
+esto generará la hoja `gr.tex` que coincidirá con la que ya tenemos
+bajo el nombre `gr_06_1437.tex`
 
-si queremos editar la hoja para Sevilla que corresponde a ramadän, més que ese año comienza el 7 de junio. 
+Ejemplo 02:
 
-     CÁLCULO DEL DÍA 30 DEL MES LUNAR (El DÍA 29 SE CALCULA ANÁLOGAMENTE)
+    python hoja.py sv 9 6 7
 
-¿Cómo calcular en que día del mes solar cae el día 30 del mes lunar,
-conocido el día de comienzo y el mes?
+si queremos editar la hoja para Sevilla que corresponde a ramadän (mes
+9 del calendario islámico), més que ese año comienza el 7 de junio. 
 
-	 python3 dia30.py diaComienzo duracionMes
+## Ampliación del Programa a una Nueva Ciudad
 
-donde diaComienzo es el día de comienzo del mes lunar y duracionMes es
-la duración del mes solar en el que comienza el mes lunar.
+1. Hacer la plantilla `.tex`
+1. Añadir la plantilla a `observacion.py`
+1. Añadir la entrada en el diccionario `plantillas`, `horarios`,
+   `ciudades` y `city` de `observacion.py`.
 
-Ejemplo:
+## Para los Cálculos Astronómicos
 
-	python3 dia30.py 3 31
+Debe descomprimir el fichero `time.zip`. En la carpeta resultante,
+también de nombre `time` encontrará dos subcarpetas entre otras:
+`moonc60` y `pt29`. En las mismas interesan los respectivos `.exe`,
+que deben ser ejecutados desde DOSBox (Mac OS y Linux) o dosemu
+(Linux), Por ejemplo la forma de instalar y habilitar DOSBox están
+magnificamente explicadas en
+[https://wildunix.es/dosbox/](https://wildunix.es/dosbox/).
 
-indicando que el mes lunar comienza el día 3 de un mes solar de 31
-días. La respuesta será 1.
+Con `moonc60.exe` podrá calcular parámetros lunares y solares para la
+observación de la creciente tras la puesta de sol que cierra el día 29
+de cada mes. Con `pt29.exe` podrá calcular las horas de la oración
+para un mes y una ciudad de las incluidas en el repertorio o las que
+usted incluya. Al calcular un mes recuerde pedir que guarde en disco
+(pulse "D" en su momento) y ante la pregunta "Do you want a custom
+line of text which will appear at top of table? (Y/N)" elija la
+opcción "N"; si no hace esto último nada funcionará correctamente.
+
+Hemos incluido ficheros de prueba para las ciudades de Elche
+(comienzan por "elche"), Sevilla (comienzan por "sevill") y Granada
+(comienzan por "granad"). Puede prescindir de ellos o eliminarlos
+simplemente. 
+
+## El Proyecto
+
+Los ficheros esenciales del proyecto son:
+
+* `observacion.py`
+* `palabras.py`
+* `horario.py`
+* `relleno.py`
+* `hoja.py`
+
+El fichero `hoja.py` es el `main` del proyecto; importa `horario.py` y
+`relleno.py`. El segundo en importancia es `horario.py`, donde están
+las clases y la manipulación de los ficheros de texto producidos por
+el programa `pt29.exe`; importa `observación.py` y `palabras.py`. El
+fichero `relleno.py` importa esos mismos ficheros; su cometido es
+constituir los ficheros `.tex` que compilados con LaTeX dan la hoja
+del mes en formato `.pdf`. Al instalar su LaTeX no olvide incluir
+`Arabtex`, que estamos luchando porque vuelva a funcionar
+correctamente (el de 2023 fue el último que lo hizo).
+
+Los ficheros que responden al patrón `plantilla_*.tex` son las
+plantillas de latex que serán rellenas cada mes por `relleno.py`.

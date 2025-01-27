@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+
+"""
+   Ejemplo de uso:
+
+      python dia29.py diaComienzo duracionMes
+
+"""
 
 import sys
 
